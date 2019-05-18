@@ -12,7 +12,7 @@ function eliminarcaracter(){
 }
 function escribirNumero(n){
 var caja2 = document.getElementById("caja2").value;
-if (borrar) { 
+if (borrar == true) { 
    console.log(borrar);
    document.getElementById("caja2").value="";
    borrar = false;
@@ -25,17 +25,19 @@ else if (caja2 == "0" && n != "."){
 else{
    document.getElementById("caja2").value = caja2 + n;
 }
-}
+} 
+
 function raiz(){
 var caja1 = document.getElementById("caja1").value;
 var caja2 = document.getElementById("caja2").value;
 document.getElementById("caja1").value = "Math.sqrt("+ caja2 + caja1 +")";
 document.getElementById("caja2").value = "";
-}
+}  
+
 function Operaciones(signo){
 var caja1 = document.getElementById("caja1").value;
 var caja2 = document.getElementById("caja2").value;
-var operacion = caja1.substring(caja1.length-1);
+var operacion = caja1.substring(caja1.length-1);  
 calcular()
 if (operacion == "+" || operacion == "-" || operacion =="*" || operacion =="/") {
    operacion = operacion.replace(operacion,signo);
@@ -43,10 +45,10 @@ if (operacion == "+" || operacion == "-" || operacion =="*" || operacion =="/") 
    document.getElementById("caja1").value = res+operacion;
 }
 if (caja1 == "" && caja2 != ""){
-   document.getElementById("caja1") = caja2 + o;
+   document.getElementById("caja1").value = caja2 + signo;
 }
 else{
-   document.getElementById("caja1") = caja1 + caja2 + o;
+   document.getElementById("caja1").value = caja1 + caja2 + signo;
  }
  borrar = true;
 }
@@ -57,14 +59,11 @@ document.getElementById("caja2").value = eval(caja1 + caja2);
 document.getElementById("caja1").value = "";
 borrar = true;
 blocdel = true;
-}
+} 
+
 function masmenos(){
-var caja2 = document.f1.txtcaja2.value;
+var caja2 = document.getElementById("caja2").value;
 if (caja2 > 0){
    document.f1.txtcaja2.value = "(-" + caja2 + ")";
-}
-else{
-   cajaplus = caja2.replace(/[-|(|)]/g, "");
-   document.f1.txtcaja2.value = cajaplus;
 }
 }
