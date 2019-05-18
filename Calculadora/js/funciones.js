@@ -12,7 +12,8 @@ function eliminarcaracter(){
 }
 function escribirNumero(n){
 var caja2 = document.getElementById("caja2").value;
-if (borrar) {
+if (borrar) { 
+   console.log(borrar);
    document.getElementById("caja2").value="";
    borrar = false;
    document.getElementById("caja2").value = n;
@@ -31,21 +32,21 @@ var caja2 = document.getElementById("caja2").value;
 document.getElementById("caja1").value = "Math.sqrt("+ caja2 + caja1 +")";
 document.getElementById("caja2").value = "";
 }
-function Operaciones(o){
-var caja1 = document.f1.txtcaja1.value;
-var caja2 = document.f1.txtcaja2.value;
-var unum = caja1.substring(caja1.length-1);
+function Operaciones(signo){
+var caja1 = document.getElementById("caja1").value;
+var caja2 = document.getElementById("caja2").value;
+var operacion = caja1.substring(caja1.length-1);
 calcular()
-if (unum == "+" || unum == "-" || unum=="*" || unum=="/") {
-   unum = unum.replace(unum,o);
+if (operacion == "+" || operacion == "-" || operacion =="*" || operacion =="/") {
+   operacion = operacion.replace(operacion,signo);
    var res = caja1.substring(0,caja1.length-1);
-   document.f1.txtcaja1.value = res+unum;
+   document.getElementById("caja1").value = res+operacion;
 }
 if (caja1 == "" && caja2 != ""){
-   document.f1.txtcaja1.value = caja2 + o;
+   document.getElementById("caja1") = caja2 + o;
 }
 else{
-   document.f1.txtcaja1.value = caja1 + caja2 + o;
+   document.getElementById("caja1") = caja1 + caja2 + o;
  }
  borrar = true;
 }
