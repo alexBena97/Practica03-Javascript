@@ -1,5 +1,5 @@
 
-var borrar = false;
+var bandera = false;
 function eliminarcaracter(){
    var caja2 = document.f1.txtcaja2.value;
          if (caja2 == "" || caja2 == "0" || caja2.length == 1 ){
@@ -10,20 +10,20 @@ function eliminarcaracter(){
              document.getElementById("caja2").value = res;
          }
 }
-function escribirNumero(n){
-var caja2 = document.getElementById("caja2").value;
-if (borrar == true) { 
-   console.log(borrar);
-   document.getElementById("caja2").value="";
-   borrar = false;
-   document.getElementById("caja2").value = n;
+function escribirNumero(numero){
+var caja2 = document.getElementById("caja2").value; 
+console.log(bandera);
+if (bandera == true) { 
+   document.getElementById("caja2").value="";   
+   bandera = false
+   document.getElementById("caja2").value = numero;  
 }
-else if (caja2 == "0" && n != "."){
+else if (caja2 == "0" && numero != "."){
    cajao = caja2.replace("0", "");
-   document.getElementById("caja2").value= cajao + n;
+   document.getElementById("caja2").value= cajao + numero;
 }
 else{
-   document.getElementById("caja2").value = caja2 + n;
+   document.getElementById("caja2").value = caja2 + numero; 
 }
 } 
 
@@ -38,9 +38,7 @@ function Operaciones(signo){
 var caja1 = document.getElementById("caja1").value;
 var caja2 = document.getElementById("caja2").value;
 var operacion = caja1.substring(caja1.length-1);  
-calcular()
 if (operacion == "+" || operacion == "-" || operacion =="*" || operacion =="/") {
-   operacion = operacion.replace(operacion,signo);
    var res = caja1.substring(0,caja1.length-1);
    document.getElementById("caja1").value = res+operacion;
 }
@@ -50,20 +48,20 @@ if (caja1 == "" && caja2 != ""){
 else{
    document.getElementById("caja1").value = caja1 + caja2 + signo;
  }
- borrar = true;
-}
+ bandera = true;
+} 
+
 function calcular(){
 var caja1 = document.getElementById("caja1").value;
 var caja2 = document.getElementById("caja2").value;
 document.getElementById("caja2").value = eval(caja1 + caja2);
 document.getElementById("caja1").value = "";
-borrar = true;
-blocdel = true;
+bandera = true;
 } 
 
 function masmenos(){
 var caja2 = document.getElementById("caja2").value;
 if (caja2 > 0){
-   document.f1.txtcaja2.value = "(-" + caja2 + ")";
+   document.getElementById("caja2") = "(-" + caja2 + ")";
 }
 }
