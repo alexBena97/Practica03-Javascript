@@ -51,10 +51,10 @@ else{
  borrar = true;
 }
 function calcular(){
-var caja1 = document.f1.txtcaja1.value;
-var caja2 = document.f1.txtcaja2.value;
-document.f1.txtcaja2.value = eval(caja1 + caja2);
-document.f1.txtcaja1.value = "";
+var caja1 = document.getElementById("caja1").value;
+var caja2 = document.getElementById("caja2").value;
+document.getElementById("caja2").value = eval(caja1 + caja2);
+document.getElementById("caja1").value = "";
 borrar = true;
 blocdel = true;
 }
