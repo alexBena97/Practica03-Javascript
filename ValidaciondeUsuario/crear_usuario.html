@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>FORMULARIO</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="crear_usuario.css" rel="stylesheet" type="text/css" /> 
+    <script type="text/javascript" src="js/validaciones.js"></script>
+</head>
+<body id="formulario"> 
+    <form method="POST" action="../controladores/crear_usuario.php" onsubmit="return validarCamposObligatorios()">
+        <fieldset>
+            <legend>Sistema de Gestion de Personas</legend>
+            <!--<label for="codigo">CODIGO:</label><input type="text" name="codigo" required> -->
+            <label for="cedula">CEDULA:</label><input type="text" id ="cedula" name="cedula" onkeyup = "validarNumeros(this)" onblur = "return ValidacionDeCedula(this)"> 
+            <span id="mensajeCedula"></span>
+            <label for="nombres">NOMBRES:</label><input type="text"  id ="nombres" name="nombres" onkeyup="validarLetras(this)">
+            <span id="mensajeNombres"></span>
+            <label for="apellidos">APELLIDOS:</label><input type="text"  id ="apellidos" name="apellidos" onkeyup="validarLetras(this)">
+            <span id="mensajeApellidos"></span>
+            <label for="direccion">DIRECCION:</label><input type="text"  id ="direccion" name="direccion">
+            <span id="mensajeDireccion"></span>
+            <label for="telefono">TELEFONO:</label><input type="text"   id ="telefono" name="telefono" onkeyup="validarNumeros(this)">
+            <span id="mensajeTelefono"></span>
+            <label for="Fecha de Nacimiento">FECHA DE NACIMIENTO:</label><input type="text"  id ="FechaDeNacimiento" name="FechaDeNacimiento" onblur="valFecha(this)">
+            <span id="mensajeFechaNacimiento"></span>
+            <label for="correo">CORREO:</label><input type="text"  id ="correo" name="correo" onblur="return validarCorreo(this)">
+            <span id="mensajeCorreo"></span>
+            <label for="contraseña">CONTRASEÑA:</label><input type="password"  id ="Contraseña" name="contraseña" >
+            <span id="mensajeContraseña"></span>
+            <input type="submit" value="Enviar">
+        </fieldset>
+    </form>
+
+
+</body>
+
+</html>
