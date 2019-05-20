@@ -1,139 +1,157 @@
-function validarCamposObligatorios(){  
+function validarCamposObligatorios() {
     var bandera = true
-    for(var i = 0; i < document.forms[0].elements.length; i++){ 
-        var elemento = document.forms[0].elements[i] 
-        if(elemento.value == '' && elemento.type == 'text'){ 
-            if(elemento.id == 'cedula'){ 
+    for (var i = 0; i < document.forms[0].elements.length; i++) {
+        var elemento = document.forms[0].elements[i]
+        if (elemento.value == '' && elemento.type == 'text') {
+            if (elemento.id == 'cedula') {
                 document.getElementById('mensajeCedula').innerHTML = 'La cedula esta vacia'
-            } 
-            if(elemento.id == 'nombres'){ 
-                document.getElementById('mensajeNombres').innerHTML = 'Los nombres estan vacios' 
-            } 
-            if(elemento.id == 'apellidos'){ 
-                document.getElementById('mensajeApellidos').innerHTML = 'Las apellidos estan vacios' 
-            }  
-            if(elemento.id == 'direccion'){ 
+            }
+            if (elemento.id == 'nombres') {
+                document.getElementById('mensajeNombres').innerHTML = 'Los nombres estan vacios'
+            }
+            if (elemento.id == 'apellidos') {
+                document.getElementById('mensajeApellidos').innerHTML = 'Las apellidos estan vacios'
+            }
+            if (elemento.id == 'direccion') {
                 document.getElementById('mensajeDireccion').innerHTML = 'La direccion esta vacia'
-            }   
-            if(elemento.id == 'FechaDeNacimiento'){ 
+            }
+            if (elemento.id == 'FechaDeNacimiento') {
                 document.getElementById('mensajeFechaNacimiento').innerHTML = 'La fecha esta vacia'
-            }   
-            if(elemento.id == 'Telefono'){ 
+            }
+            if (elemento.id == 'Telefono') {
                 document.getElementById('mensajeTelefono').innerHTML = 'el telefono esta vacio'
-            }   
-            if(elemento.id == 'Correo'){ 
+            }
+            if (elemento.id == 'Correo') {
                 document.getElementById('mensajeCorreo').innerHTML = 'El correo esta vacio'
-            } 
-            if(elemento.id == 'Contraseña'){ 
+            }
+            if (elemento.id == 'Contraseña') {
                 document.getElementById('mensajeContraseña').innerHTML = 'La contraseña esta vacia'
-            }  
+            }
             elemento.style.border = '1px red solid'
             bandera = false
-        } 
-    }  
-    if(!bandera){ 
+        }
+    }
+    if (!bandera) {
     }
     return bandera
-} 
+}
 
-function ValidacionDeCedula(){ 
+function ValidacionDeCedula() {
     var cedula = document.getElementById('cedula').value.trim();
-    var longitud = cedula.length 
-    if(longitud < 10 || longitud > 10){ 
-        for(var i = 0; i < document.forms[0].elements.length; i++){ 
-            var elemento = document.forms[0].elements[i] 
-            if(elemento.id == 'cedula'){  
-            document.getElementById('mensajeCedula').innerHTML = "La cedula debe de tener 10 digitos"; 
-            elemento.style.border = '1px red solid'
-             }  
+    var longitud = cedula.length
+    if (longitud < 10 || longitud > 10) {
+        for (var i = 0; i < document.forms[0].elements.length; i++) {
+            var elemento = document.forms[0].elements[i]
+            if (elemento.id == 'cedula') {
+                document.getElementById('mensajeCedula').innerHTML = "La cedula debe de tener 10 digitos";
+                elemento.style.border = '1px red solid'
+            }
         }
-    }else{ 
+    } else {
         var total = 0;
         var longcheck = longitud - 1;
-    
-        if (cedula!== '' && longitud === 10){
-          for(i = 0; i < longcheck; i++){
-            if (i%2 === 0) {
-              var aux = cedula.charAt(i) * 2;
-              if (aux > 9) aux -= 9;
-              total += aux;
-            } else {
-              total += parseInt(cedula.charAt(i)); 
+
+        if (cedula !== '' && longitud === 10) {
+            for (i = 0; i < longcheck; i++) {
+                if (i % 2 === 0) {
+                    var aux = cedula.charAt(i) * 2;
+                    if (aux > 9) aux -= 9;
+                    total += aux;
+                } else {
+                    total += parseInt(cedula.charAt(i));
+                }
             }
-          }
-    
-          total = total % 10 ? 10 - total % 10 : 0;
-    
-          if (cedula.charAt(longitud-1) == total) {
-            document.getElementById('mensajeCedula').innerHTML = ("Cedula Válida");
-          }else{ 
-            for(var i = 0; i < document.forms[0].elements.length; i++){ 
-                var elemento = document.forms[0].elements[i] 
-                if(elemento.id == 'cedula'){  
-                document.getElementById('mensajeCedula').innerHTML = ("Cedula Inválida"); 
-                elemento.style.border = '1px red solid'
-             } 
-            }  
-          }
+
+            total = total % 10 ? 10 - total % 10 : 0;
+
+            if (cedula.charAt(longitud - 1) == total) {
+                document.getElementById('mensajeCedula').innerHTML = ("Cedula Válida");
+            } else {
+                for (var i = 0; i < document.forms[0].elements.length; i++) {
+                    var elemento = document.forms[0].elements[i]
+                    if (elemento.id == 'cedula') {
+                        document.getElementById('mensajeCedula').innerHTML = ("Cedula Inválida");
+                        elemento.style.border = '1px red solid'
+                    }
+                }
+            }
         }
     }
-}  
+}
+var contadorNombres = 0; 
+var contadorApellidos = 0;
+function validarLetras(n) {
+    var letras = document.getElementById(n.id).value
+    console.log(letras)
 
-function validarLetras(n){   
-    var letras = document.getElementById(n.id).value 
-    console.log(letras) 
-   if(n.id == 'nombres'){  
-      var ultimo = letras.substr(letras.length-1).charCodeAt(0)
-       if((ultimo >= 65 && ultimo <= 90)||(ultimo >= 97 && ultimo <= 122)|| ultimo == 32){ 
-       }else{  
-        var bien = letras.substring(0,letras.length-1)
-        document.getElementById('nombres').value= bien 
-       }
-    }else if (n.id == 'apellidos'){  
-        var ultimo = letras.substr(letras.length-1).charCodeAt(0)
-       if((ultimo >= 65 && ultimo <= 90)||(ultimo >= 97 && ultimo <= 122)|| ultimo == 32){ 
-       }else{  
-        var bien2 = letras.substring(0,letras.length-1)
-        document.getElementById('apellidos').value= bien2
-       }
+    if (n.id == 'nombres') {
+        var ultimo = letras.substr(letras.length - 1).charCodeAt(0)
+        if ((ultimo >= 65 && ultimo <= 90) || (ultimo >= 97 && ultimo <= 122) || ultimo == 32) {
+            if (ultimo == 32) { 
+                contadorNombres++
+                console.log(contadorNombres)
+                if (contadorNombres > 1) {
+                    var bien = letras.substring(0, letras.length - 1)
+                    document.getElementById('nombres').value = bien
+                }
+            }
+        } else {
+            var bien = letras.substring(0, letras.length - 1)
+            document.getElementById('nombres').value = bien
+        }
+    } else if (n.id == 'apellidos') {
+        var ultimo = letras.substr(letras.length - 1).charCodeAt(0)
+        if ((ultimo >= 65 && ultimo <= 90) || (ultimo >= 97 && ultimo <= 122) || ultimo == 32) { 
+            if (ultimo == 32) { 
+                contadorApellidos++
+                console.log(contadorApellidos)
+                if (contadorApellidos > 1) {
+                    var bien = letras.substring(0, letras.length - 1)
+                    document.getElementById('apellidos').value = bien
+                }
+            }
+        } else {
+            var bien2 = letras.substring(0, letras.length - 1)
+            document.getElementById('apellidos').value = bien2
+        }
     }
-} 
+}
 
-function validarNumeros(datos){ 
-   var letras = "abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZ"
-   var numeros = document.getElementById(datos.id).value 
-   var cadena 
-   cadena = numeros.substring(numeros.length-1)
-   if(letras.indexOf(cadena,0)!=-1){  
-     var bien = numeros.substring(0,numeros.length-1); 
-     document.getElementById(datos.id).value= bien
-   }
-  
-} 
+function validarNumeros(datos) {
+    var letras = "abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZ"
+    var numeros = document.getElementById(datos.id).value
+    var cadena
+    cadena = numeros.substring(numeros.length - 1)
+    if (letras.indexOf(cadena, 0) != -1) {
+        var bien = numeros.substring(0, numeros.length - 1);
+        document.getElementById(datos.id).value = bien
+    }
 
-function validarCorreo(){ 
-    var correo = document.getElementById("correo").value;  
+}
+
+function validarCorreo() {
+    var correo = document.getElementById("correo").value;
     var long = correo.length
-    var val = correo.substring(correo.length-15)  
-    var val2 = correo.substring(correo.length-11)
-    if(val != "@est.ups.edu.ec" && val2 != "@est.ups.ec" ){ 
-        for(var i = 0; i < document.forms[0].elements.length; i++){ 
-            var elemento = document.forms[0].elements[i] 
-            if(elemento.id == 'correo'){  
-            document.getElementById('mensajeCorreo').innerHTML = ("Correo Incorrecto"); 
-            elemento.style.border = '1px red solid'
-            }  
+    var val = correo.substring(correo.length - 15)
+    var val2 = correo.substring(correo.length - 11)
+    if (val != "@est.ups.edu.ec" && val2 != "@est.ups.ec") {
+        for (var i = 0; i < document.forms[0].elements.length; i++) {
+            var elemento = document.forms[0].elements[i]
+            if (elemento.id == 'correo') {
+                document.getElementById('mensajeCorreo').innerHTML = ("Correo Incorrecto");
+                elemento.style.border = '1px red solid'
+            }
         }
-    }else if (long > 70){ 
-        for(var i = 0; i < document.forms[0].elements.length; i++){ 
-            var elemento = document.forms[0].elements[i] 
-            if(elemento.id == 'correo'){  
-            document.getElementById('mensajeCorreo').innerHTML = ("No puede tener mas de 70 caracteres"); 
-            elemento.style.border = '1px red solid'
-            }  
+    } else if (long > 70) {
+        for (var i = 0; i < document.forms[0].elements.length; i++) {
+            var elemento = document.forms[0].elements[i]
+            if (elemento.id == 'correo') {
+                document.getElementById('mensajeCorreo').innerHTML = ("No puede tener mas de 70 caracteres");
+                elemento.style.border = '1px red solid'
+            }
         }
     }
-} 
+}
 
 function valFecha(datos) {
     var fecha = document.getElementById(datos.id).value
