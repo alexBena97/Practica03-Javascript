@@ -62,7 +62,23 @@ function raiz() {
 
 function masmenos() {
    var caja2 = document.getElementById("caja2").value;
-   if (caja2 > 0) {
-      document.getElementById("caja2") = "(-" + caja2 + ")";
+   var menos = caja2.indexOf('-'); 
+
+   console.log(caja2)
+   console.log(menos)
+   if (caja2 != 0) {
+      if (menos == 0) { 
+         console.log("hola")
+         var mas = new Array(2);
+         mas = caja2.split('-');
+         console.log(mas)
+         var caja2 = document.getElementById("caja2").value = mas[1];
+      } else {
+         document.getElementById("caja2").value = "-" + caja2;
+      }
+
+   } else {
+      document.getElementById("caja2").value = caja2;
    }
+
 }
