@@ -133,8 +133,12 @@ function validarCorreo() {
     var correo = document.getElementById("correo").value;
     var long = correo.length
     var val = correo.substring(correo.length - 15)
-    var val2 = correo.substring(correo.length - 11)
-    if (val != "@est.ups.edu.ec" && val2 != "@est.ups.ec") {
+    var val2 = correo.substring(correo.length - 11)   
+    var arreglo = new Array(2);
+    arreglo = correo.split('@'); 
+    var val3 = arreglo[0]  
+    console.log(val3.length)
+    if ((val != "@est.ups.edu.ec" && val2 != "@est.ups.ec") || val3.length<3) {
         for (var i = 0; i < document.forms[0].elements.length; i++) {
             var elemento = document.forms[0].elements[i]
             if (elemento.id == 'correo') {
