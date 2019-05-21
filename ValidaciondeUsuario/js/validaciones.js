@@ -78,7 +78,7 @@ function ValidacionDeCedula() {
         }
     }
 }
-var contadorNombres = 0; 
+var contadorNombres = 0;
 var contadorApellidos = 0;
 function validarLetras(n) {
     var letras = document.getElementById(n.id).value
@@ -87,12 +87,12 @@ function validarLetras(n) {
     if (n.id == 'nombres') {
         var ultimo = letras.substr(letras.length - 1).charCodeAt(0)
         if ((ultimo >= 65 && ultimo <= 90) || (ultimo >= 97 && ultimo <= 122) || ultimo == 32) {
-            if (ultimo == 32) { 
+            if (ultimo == 32) {
                 contadorNombres++
                 console.log(contadorNombres)
                 if (contadorNombres > 1) {
                     var bien = letras.substring(0, letras.length - 1)
-                    document.getElementById('nombres').value = bien
+                    document.getElementById('nombres').value = bien   
                 }
             }
         } else {
@@ -101,11 +101,11 @@ function validarLetras(n) {
         }
     } else if (n.id == 'apellidos') {
         var ultimo = letras.substr(letras.length - 1).charCodeAt(0)
-        if ((ultimo >= 65 && ultimo <= 90) || (ultimo >= 97 && ultimo <= 122) || ultimo == 32) { 
-            if (ultimo == 32) { 
+        if ((ultimo >= 65 && ultimo <= 90) || (ultimo >= 97 && ultimo <= 122) || ultimo == 32) {
+            if (ultimo == 32) {
                 contadorApellidos++
                 console.log(contadorApellidos)
-                if (contadorApellidos > 1) {
+                if (contadorApellidos >1) {
                     var bien = letras.substring(0, letras.length - 1)
                     document.getElementById('apellidos').value = bien
                 }
