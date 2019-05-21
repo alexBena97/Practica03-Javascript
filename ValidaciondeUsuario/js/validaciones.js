@@ -108,8 +108,8 @@ function validarLetras(n) {
 function validarNumeros(datos) {
     var nums = document.getElementById(datos.id).value
     if (datos.id == 'telefono') {
-        if (nums.length != 10) {
-            document.getElementById('mensajeTelefono').innerHTML = 'Número de teléfono debe de incorrecto'
+        if (nums.length > 10) {
+            document.getElementById('telefono').value = nums.substr(0, nums.length - 1)
         } else {
             document.getElementById('mensajeTelefono').innerHTML = ''
             var n = nums.substr(nums.length - 1).charCodeAt(0)
