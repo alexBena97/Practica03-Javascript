@@ -118,13 +118,18 @@ function validarLetras(n) {
 }
 
 function validarNumeros(datos) {
-    var letras = "abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZ"
-    var numeros = document.getElementById(datos.id).value
-    var cadena
-    cadena = numeros.substring(numeros.length - 1)
-    if (letras.indexOf(cadena, 0) != -1) {
-        var bien = numeros.substring(0, numeros.length - 1);
-        document.getElementById(datos.id).value = bien
+    var nums = document.getElementById(datos.id).value
+    if (datos.id == 'telefono') {
+        if (nums.length != 10) {
+            document.getElementById('mensajeTelefono').innerHTML = '<br>Número de teléfono incorrecto'
+        } else {
+            document.getElementById('mensajeTelefono').innerHTML = ''
+            var n = nums.substr(nums.length - 1).charCodeAt(0)
+            if (n >= 48 && n <= 57) {
+            } else {
+                document.getElementById('telefono').value = nums.substr(0, nums.length - 1)
+            }
+        }
     }
 
 }
@@ -154,20 +159,22 @@ function validarCorreo() {
                 elemento.style.border = '1px red solid'
             }
         }
-    }
+    }  
 }
 
 function valFecha(datos) {
     var fecha = document.getElementById(datos.id).value
-    console.log(fecha)
-    if (fecha.length == 10) {
+    if (fecha.length == 10 && fecha !== '') {
         var dia = fecha.substr(0, 2)
         var mes = fecha.substr(3, 2)
         var año = fecha.substr(6, 4)
-        var val1 = false;
-        var val2 = false;
-        var val3 = false;
-        var val4 = false;
+        var s1 = fecha.substr(2, 1)
+        var s2 = fecha.substr(5, 1)
+        var val1 = false
+        var val2 = false
+        var val3 = false
+        var val4 = false
+        var vals = false
         añov = parseInt(año)
         diav = parseInt(dia)
 
@@ -175,34 +182,51 @@ function valFecha(datos) {
             diav = parseInt(dia)
             if (diav >= 1 && diav <= 31) {
                 val1 = true;
-                console.log(val1)
             }
         } else if (mes == '02') {
             if (añov % 4 == 0) {
                 if (diav >= 1 && diav <= 29) {
                     val2 = true;
-                    console.log(val2)
                 }
             } else {
                 if (diav >= 1 && diav <= 28) {
                     val3 = true;
-                    console.log(val3)
                 }
             }
-        } else {
+        } else if (mes == '04' || mes == '06' || mes == '09' || mes == '11') {
             if (diav >= 1 && diav <= 30) {
                 val4 = true;
-                console.log(val4)
             }
         }
-        if (val1 == true || val2 == true || val3 == true || val4 == true) {
-            document.getElementById('mensajeFechaNacimiento').innerHTML = ''
+        var fechaActual = new Date();
+        var diaActual = fechaActual.getDate()
+        var mesActual = fechaActual.getMonth() + 1
+        var añoActual = fechaActual.getFullYear()
+        if (s1 == '/' && s2 == '/') {
+            vals = true
+        } else {
+            document.getElementById('mensajeFechaNacimiento').innerHTML = '<br> El formato de fecha es incorrecto'
+        }
+        if (parseInt(año) < añoActual) {
+            if ((val1 == true || val2 == true || val3 == true || val4 == true) && vals == true) {
+                document.getElementById('mensajeFechaNacimiento').innerHTML = ''
+            }
+        } else if (parseInt(año) == añoActual) {
+            if ((val1 == true || val2 == true || val3 == true || val4 == true) && vals == true && parseInt(mes) <= mesActual && parseInt(dia) <= diaActual) {
+                document.getElementById('mensajeFechaNacimiento').innerHTML = ''
+            } else {
+                if (vals == false) {
+                    document.getElementById('mensajeFechaNacimiento').innerHTML = '<br>El formato de fecha es incorrecto'
+                } else {
+                    document.getElementById('mensajeFechaNacimiento').innerHTML = '<br>La fecha es incorrecta'
+                }
+            }
         }
         if (val1 == false && val2 == false && val3 == false && val4 == false) {
-            document.getElementById('mensajeFechaNacimiento').innerHTML = 'La fecha es incorrecta'
+            document.getElementById('mensajeFechaNacimiento').innerHTML = '<br>La fecha es incorrecta'
         }
     } else {
-        document.getElementById('mensajeFechaNacimiento').innerHTML = 'La fecha es incorrecta'
+        document.getElementById('mensajeFechaNacimiento').innerHTML = '<br>La fecha es incorrecta o está vacía'
     }
 }
 
