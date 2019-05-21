@@ -40,13 +40,7 @@ function ValidacionDeCedula() {
     var cedula = document.getElementById('cedula').value.trim();
     var longitud = cedula.length
     if (longitud < 10 || longitud > 10) {
-        for (var i = 0; i < document.forms[0].elements.length; i++) {
-            var elemento = document.forms[0].elements[i]
-            if (elemento.id == 'cedula') {
-                document.getElementById('mensajeCedula').innerHTML = "La cedula debe de tener 10 digitos";
-                elemento.style.border = '1px red solid'
-            }
-        }
+        document.getElementById('mensajeCedula').innerHTML = "La cedula debe de tener 10 digitos";
     } else {
         var total = 0;
         var longcheck = longitud - 1;
@@ -65,15 +59,9 @@ function ValidacionDeCedula() {
             total = total % 10 ? 10 - total % 10 : 0;
 
             if (cedula.charAt(longitud - 1) == total) {
-                document.getElementById('mensajeCedula').innerHTML = ("Cedula Válida");
+                document.getElementById('mensajeCedula').innerHTML = "";
             } else {
-                for (var i = 0; i < document.forms[0].elements.length; i++) {
-                    var elemento = document.forms[0].elements[i]
-                    if (elemento.id == 'cedula') {
-                        document.getElementById('mensajeCedula').innerHTML = ("Cedula Inválida");
-                        elemento.style.border = '1px red solid'
-                    }
-                }
+                document.getElementById('mensajeCedula').innerHTML = ("Cedula Inválida");
             }
         }
     }
@@ -92,7 +80,7 @@ function validarLetras(n) {
                 console.log(contadorNombres)
                 if (contadorNombres > 1) {
                     var bien = letras.substring(0, letras.length - 1)
-                    document.getElementById('nombres').value = bien   
+                    document.getElementById('nombres').value = bien
                 }
             }
         } else {
@@ -105,7 +93,7 @@ function validarLetras(n) {
             if (ultimo == 32) {
                 contadorApellidos++
                 console.log(contadorApellidos)
-                if (contadorApellidos >1) {
+                if (contadorApellidos > 1) {
                     var bien = letras.substring(0, letras.length - 1)
                     document.getElementById('apellidos').value = bien
                 }
@@ -121,7 +109,7 @@ function validarNumeros(datos) {
     var nums = document.getElementById(datos.id).value
     if (datos.id == 'telefono') {
         if (nums.length != 10) {
-            document.getElementById('mensajeTelefono').innerHTML = '<br>Número de teléfono incorrecto'
+            document.getElementById('mensajeTelefono').innerHTML = 'Número de teléfono debe de incorrecto'
         } else {
             document.getElementById('mensajeTelefono').innerHTML = ''
             var n = nums.substr(nums.length - 1).charCodeAt(0)
@@ -138,28 +126,22 @@ function validarCorreo() {
     var correo = document.getElementById("correo").value;
     var long = correo.length
     var val = correo.substring(correo.length - 15)
-    var val2 = correo.substring(correo.length - 11)   
+    var val2 = correo.substring(correo.length - 11)
     var arreglo = new Array(2);
-    arreglo = correo.split('@'); 
-    var val3 = arreglo[0]  
-    console.log(val3.length)
-    if ((val != "@est.ups.edu.ec" && val2 != "@est.ups.ec") || val3.length<3) {
-        for (var i = 0; i < document.forms[0].elements.length; i++) {
-            var elemento = document.forms[0].elements[i]
-            if (elemento.id == 'correo') {
-                document.getElementById('mensajeCorreo').innerHTML = ("Correo Incorrecto");
-                elemento.style.border = '1px red solid'
-            }
-        }
-    } else if (long > 70) {
-        for (var i = 0; i < document.forms[0].elements.length; i++) {
-            var elemento = document.forms[0].elements[i]
-            if (elemento.id == 'correo') {
-                document.getElementById('mensajeCorreo').innerHTML = ("No puede tener mas de 70 caracteres");
-                elemento.style.border = '1px red solid'
-            }
-        }
-    }  
+    arreglo = correo.split('@');
+    var val3 = arreglo[0]
+    console.log(val3.length) 
+
+    if (val != "@est.ups.edu.ec" && val2 != "@est.ups.ec") {
+        document.getElementById('mensajeCorreo').innerHTML = ("Correo Incorrecto"); 
+
+    } else if(val3.length < 3){ 
+        document.getElementById('mensajeCorreo').innerHTML = "El correo debe de  tener mas de tres caracteres";
+    }else if (long > 70) {
+        document.getElementById('mensajeCorreo').innerHTML = ("Correo Incorrecto");
+    }else{ 
+        document.getElementById('mensajeCorreo').innerHTML = "";
+    }
 }
 
 function valFecha(datos) {
