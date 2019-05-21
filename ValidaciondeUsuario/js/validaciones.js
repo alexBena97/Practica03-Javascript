@@ -2,7 +2,7 @@ function validarCamposObligatorios() {
     var bandera = true
     for (var i = 0; i < document.forms[0].elements.length; i++) {
         var elemento = document.forms[0].elements[i]
-        if (elemento.value == '' && elemento.type == 'text') {
+        if (elemento.value == '' && (elemento.type == 'text'||elemento.type == 'password')) {
             if (elemento.id == 'cedula') {
                 document.getElementById('mensajeCedula').innerHTML = 'La cedula esta vacia'
             }
@@ -18,10 +18,10 @@ function validarCamposObligatorios() {
             if (elemento.id == 'FechaDeNacimiento') {
                 document.getElementById('mensajeFechaNacimiento').innerHTML = 'La fecha esta vacia'
             }
-            if (elemento.id == 'Telefono') {
+            if (elemento.id == 'telefono') {
                 document.getElementById('mensajeTelefono').innerHTML = 'el telefono esta vacio'
             }
-            if (elemento.id == 'Correo') {
+            if (elemento.id == 'correo') {
                 document.getElementById('mensajeCorreo').innerHTML = 'El correo esta vacio'
             }
             if (elemento.id == 'Contraseña') {
@@ -124,7 +124,7 @@ function validarNumeros(datos) {
 
 function validarCorreo() {
     var correo = document.getElementById("correo").value;
-    var long = correo.length
+    var longitud = correo.length
     var val = correo.substring(correo.length - 15)
     var val2 = correo.substring(correo.length - 11)
     var arreglo = new Array(2);
@@ -137,7 +137,7 @@ function validarCorreo() {
 
     } else if(val3.length < 3){ 
         document.getElementById('mensajeCorreo').innerHTML = "El correo debe de  tener mas de tres caracteres";
-    }else if (long > 70) {
+    }else if (longitud > 70) {
         document.getElementById('mensajeCorreo').innerHTML = ("Correo Incorrecto");
     }else{ 
         document.getElementById('mensajeCorreo').innerHTML = "";

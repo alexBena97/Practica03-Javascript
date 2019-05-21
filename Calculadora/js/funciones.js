@@ -63,12 +63,8 @@ function raiz() {
 function masmenos() {
    var caja2 = document.getElementById("caja2").value;
    var menos = caja2.indexOf('-'); 
-
-   console.log(caja2)
-   console.log(menos)
    if (caja2 != 0) {
       if (menos == 0) { 
-         console.log("hola")
          var mas = new Array(2);
          mas = caja2.split('-');
          console.log(mas)
