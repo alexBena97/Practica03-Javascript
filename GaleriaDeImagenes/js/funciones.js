@@ -33,3 +33,14 @@ function Siguiente() {
     }
 } 
 
+function Anterior(){ 
+    cont--; 
+    if(cont > -1){ 
+        console.log("Atras "+cont);
+        var imagen2 = numeroDeImagenes[cont];
+        document.getElementById('imagen').src = imagen2;
+    }else{ 
+        document.getElementById('anterior').disable = true; 
+        cont++;
+    }
+}
