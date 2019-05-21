@@ -21,3 +21,15 @@ function Iniciar() {
     document.getElementById('imagen').src = imagen;
 }
 
+function Siguiente() {
+    cont++;
+    if (cont < 5) {
+        console.log("Siguiente "+cont);
+        var imagen2 = numeroDeImagenes[cont];
+        document.getElementById('imagen').src = imagen2;
+    } else {
+        document.getElementById('siguiente').disable = true; 
+        cont--;
+    }
+} 
+
