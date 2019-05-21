@@ -18,7 +18,7 @@ function escribirNumero(numero) {
 }
 
 function eliminarcaracter() {
-   var caja2 = document.f1.txtcaja2.value;
+   var caja2 = document.getElementById("caja2").value;
    if (caja2 == "" || caja2 == "0" || caja2.length == 1) {
       document.getElementById("caja2").value = "0";
    }
