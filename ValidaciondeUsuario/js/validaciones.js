@@ -2,7 +2,7 @@ function validarCamposObligatorios() {
     var bandera = true
     for (var i = 0; i < document.forms[0].elements.length; i++) {
         var elemento = document.forms[0].elements[i]
-        if (elemento.value == '' && (elemento.type == 'text'||elemento.type == 'password')) {
+        if (elemento.value == '' && (elemento.type == 'text' || elemento.type == 'password')) {
             if (elemento.id == 'cedula') {
                 document.getElementById('mensajeCedula').innerHTML = 'La cedula esta vacia'
             }
@@ -66,44 +66,7 @@ function ValidacionDeCedula() {
         }
     }
 }
-var contadorNombres = 0;
-var contadorApellidos = 0;
-function validarLetras(n) {
-    var letras = document.getElementById(n.id).value
-    console.log(letras)
 
-    if (n.id == 'nombres') {
-        var ultimo = letras.substr(letras.length - 1).charCodeAt(0)
-        if ((ultimo >= 65 && ultimo <= 90) || (ultimo >= 97 && ultimo <= 122) || ultimo == 32) {
-            if (ultimo == 32) {
-                contadorNombres++
-                console.log(contadorNombres)
-                if (contadorNombres > 1) {
-                    var bien = letras.substring(0, letras.length - 1)
-                    document.getElementById('nombres').value = bien
-                }
-            }
-        } else {
-            var bien = letras.substring(0, letras.length - 1)
-            document.getElementById('nombres').value = bien
-        }
-    } else if (n.id == 'apellidos') {
-        var ultimo = letras.substr(letras.length - 1).charCodeAt(0)
-        if ((ultimo >= 65 && ultimo <= 90) || (ultimo >= 97 && ultimo <= 122) || ultimo == 32) {
-            if (ultimo == 32) {
-                contadorApellidos++
-                console.log(contadorApellidos)
-                if (contadorApellidos > 1) {
-                    var bien = letras.substring(0, letras.length - 1)
-                    document.getElementById('apellidos').value = bien
-                }
-            }
-        } else {
-            var bien2 = letras.substring(0, letras.length - 1)
-            document.getElementById('apellidos').value = bien2
-        }
-    }
-}
 
 function validarNumeros(datos) {
     var nums = document.getElementById(datos.id).value
@@ -130,16 +93,16 @@ function validarCorreo() {
     var arreglo = new Array(2);
     arreglo = correo.split('@');
     var val3 = arreglo[0]
-    console.log(val3.length) 
+    console.log(val3.length)
 
     if (val != "@est.ups.edu.ec" && val2 != "@est.ups.ec") {
-        document.getElementById('mensajeCorreo').innerHTML = ("Correo Incorrecto"); 
-
-    } else if(val3.length < 3){ 
-        document.getElementById('mensajeCorreo').innerHTML = "El correo debe de  tener mas de tres caracteres";
-    }else if (longitud > 70) {
         document.getElementById('mensajeCorreo').innerHTML = ("Correo Incorrecto");
-    }else{ 
+
+    } else if (val3.length < 3) {
+        document.getElementById('mensajeCorreo').innerHTML = "El correo debe de  tener mas de tres caracteres";
+    } else if (longitud > 70) {
+        document.getElementById('mensajeCorreo').innerHTML = ("Correo Incorrecto");
+    } else {
         document.getElementById('mensajeCorreo').innerHTML = "";
     }
 }
@@ -212,3 +175,35 @@ function valFecha(datos) {
     }
 }
 
+
+function validarLetras(letras) {
+    var n = document.getElementById(letras.id).value
+    if (letras.id == 'nombres') {
+        var asc = n.substr(n.length - 1).charCodeAt(0)
+        if ((asc >= 65 && asc<= 90) || (asc >= 97 && asc <= 122) || asc == 32 || asc == 225 || asc == 233 || asc == 237 || asc == 243 || asc == 250 || asc == 193 || asc == 201 || asc == 205 || asc == 211 || asc == 218) {
+            var espaciosNom = n.split(" ") 
+            var total = espaciosNom.length
+            if (total> 2) {
+                document.getElementById('mensajeNombres').innerHTML = 'No es permitido mas de dos nombres'
+            }else{ 
+                document.getElementById('mensajeNombres').innerHTML = ''
+            }
+        } else {
+            document.getElementById('nombres').value = n.substr(0, n.length - 1)
+        }
+    } else if (letras.id == 'apellidos') {
+        var asc2= n.substr(n.length - 1).charCodeAt(0)
+        if ((asc2 >= 65 && asc2 <= 90) || (asc2 >= 97 && asc2 <= 122) || asc2 == 32 || asc2 == 225 || asc2 == 233 || asc2 == 237 || asc2 == 243 || asc2 == 250 || asc2 == 193 || asc2 == 201 || asc2 == 205 || asc2 == 211 || asc2 == 218) {
+            var espaciosApe = n.split(" "); 
+            var total2 = espaciosApe.length;
+            if (total2 > 2) {
+                document.getElementById('mensajeApellidos').innerHTML = 'No es permitido mas de dos Apellidos'
+            }else{  
+                document.getElementById('mensajeApellidos').innerHTML = ''
+            }
+
+        } else {
+            document.getElementById('apellidos').value = n.substr(0, n.length - 1)
+        }
+    }
+}

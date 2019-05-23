@@ -32,6 +32,14 @@ function Operaciones(signo) {
    var caja1 = document.getElementById("caja1").value;
    var caja2 = document.getElementById("caja2").value;
    var operacion = caja1.substring(caja1.length - 1);
+   if (signo == '%') {
+      if (caja1 != "") {
+         por = caja2 / 100;
+         console.log(por)
+         document.getElementById("caja1").value = caja1 + por;
+      }
+
+   }
    if (operacion == "+" || operacion == "-" || operacion == "*" || operacion == "/") {
       var res = caja1.substring(0, caja1.length - 1);
       document.getElementById("caja1").value = res + operacion;
@@ -62,9 +70,9 @@ function raiz() {
 
 function masmenos() {
    var caja2 = document.getElementById("caja2").value;
-   var menos = caja2.indexOf('-'); 
+   var menos = caja2.indexOf('-');
    if (caja2 != 0) {
-      if (menos == 0) { 
+      if (menos == 0) {
          var mas = new Array(2);
          mas = caja2.split('-');
          console.log(mas)
@@ -77,4 +85,21 @@ function masmenos() {
       document.getElementById("caja2").value = caja2;
    }
 
+}
+
+
+function unMedio(signo) {
+   var caja1 = document.getElementById("caja1").value;
+   var caja2 = document.getElementById('caja2').value;
+
+   var medio = signo.value;
+   var total = "1/" + caja2 + ""
+   document.getElementById("caja1").value = caja1 + total;
+   totalmedio = eval(total);
+   document.getElementById("caja2").value = totalmedio;
+
+   
+
+   console.log(medio);
+   console.log(totalmedio);
 }
